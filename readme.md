@@ -8,3 +8,5 @@ creating a new branch
 =======
 test feature
 >>>>>>> feature1
+
+no ff
