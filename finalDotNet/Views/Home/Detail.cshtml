@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "详细";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model finalDotNet.noticetable
+<h1>@Model.title</h1>
+<div class="container">
+    <p class="lead col-md-offset-9">发布人：@Model.author</p>
+
+    <p class="text-center lead">@Model.content</p>
+</div>

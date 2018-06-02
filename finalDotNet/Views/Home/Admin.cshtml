@@ -1,0 +1,45 @@
+﻿
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center">管理员登录</h1>
+<body>
+    @using (Html.BeginForm("Admin", "Home", FormMethod.Post, new { @class = "form-group",id="adminlogin" }))
+    {
+        <div>
+            @*姓名登陆*@
+            <div class="form-group form-inline">
+                @*<label class="control-label col-md-1" for="name">姓名</label>*@
+                <input class="form-control" type="text" id="name" name="name" placeholder="请输入姓名" />
+            </div>
+
+            <div class="form-group form-inline">
+                @*<label class="control-label col-md-1" for="level">密码</label>*@
+                <input class="form-control" type="password" id="password" name="password" placeholder="请输入密码" />
+            </div>
+            <div>
+                <input class="btn btn-lg  btn-default" type="submit" value="提交" id="submit" />
+            </div>
+        </div>
+    }
+    @*@Html.ActionLink("返回", "Index")*@
+</body>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#adminlogin").validate({
+            rules: {
+                name: "required",
+                password:"required"
+            },
+            messages: {
+                name: "必填",
+                password:"必填"
+            }
+
+        })
+
+    })
+</script>

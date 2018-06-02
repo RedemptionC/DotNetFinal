@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "join";
+    Layout = null;
+}   
+@model IEnumerable<finalDotNet.Models.join>
+<h2>join</h2>
+@{ @*dont work noe*@
+    //foreach (var item in (IEnumerable<finalDotNet.Models.join>)ViewBag.joinrs )
+    foreach(var item in Model)
+    {
+        <p>@item.username  @item.title</p>
+    }
+
+}

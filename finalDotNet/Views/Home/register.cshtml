@@ -1,0 +1,117 @@
+﻿
+@model finalDotNet.usertable
+<head>
+
+</head>
+<body>
+    <h1 class="text-center">会员注册</h1>
+    @using (Html.BeginForm("register", "Home", FormMethod.Post,new { id="register"}))
+    {
+        <div>
+
+            <div class="form-group form-inline">
+                <label class="control-label col-md-1" for="username">姓名</label>
+                @Html.EditorFor(model=>model.username,new { htmlAttributes = new { @class="form-control",placeholder="请输入姓名"}})<span id="ajaxifExist"></span>
+                @*@Html.ValidationMessageFor(model=>model.username)*@
+                @*<input class="form-control" type="text" id="username" name="username" />*@
+
+
+            </div>
+
+
+            <div class="form-group form-inline">
+                <label class="control-label col-md-1" for="password">密码</label>
+                <input type="password" class="input-validation-error form-control" id="password" name="password" placeholder="请输入密码" />
+                @*@Html.ValidationMessageFor(model => model.password)*@
+
+            </div>
+            <div class="form-group form-inline">
+                <label class="control-label col-md-1" for="qq">QQ</label>
+                @Html.EditorFor(model => model.qq, new { htmlAttributes = new { @class = "form-control", placeholder = "请输入qq" } })
+                @*@Html.ValidationMessageFor(model => model.qq)*@
+
+            </div>
+            <div class="form-group form-inline">
+                <label class="control-label col-md-1" for="email">邮箱</label>
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", placeholder = "请输入邮箱" } })
+                @*@Html.ValidationMessageFor(model => model.email)*@
+
+            </div>
+            <div>
+                <input class="btn btn-default btn-lg" type="submit" value="提交" id="submit" />
+            </div>
+        </div>
+    }
+    @*@Html.ActionLink("返回", "Index")*@
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#register").validate({
+                rules: {
+                    username: {
+                        required: true,
+                        minlength: 2,
+                        maxlength: 30
+                    },
+                    password: {
+                        required: true,
+                        minlength: 7,
+                        maxlength: 30
+                    },
+                    qq: {
+                        required: true,
+                        minlength: 5,
+                        maxlength: 15
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    }
+                },
+                messages: {
+                    username: {
+                        required: "必填",
+                        minlength: "长度不得小于2",
+                        maxlength: "长度不得大于30"
+                    },
+                    password: {
+                        required: "必填",
+                        minlength: "长度不得小于7",
+                        maxlength: "长度不得大于30"
+                    },
+                    qq: {
+                        required: "必填",
+                        minlength: "长度不得小于5",
+                        maxlength: "长度不得大于15"
+                    },
+                    email: {
+                        required: "必填",
+                        email: "请输入正确的email格式"
+                    }
+                }
+            });
+            $("#username").keyup(function () {
+                var name = $(this).val();
+                $.ajax({
+                    url: "/Home/ajaxifExist",
+                    data: "name=" + name,
+                    success: function (b) {
+                        if (b == 1) {
+                            $("#ajaxifExist").html("已存在");
+                        }
+                        else
+                        {
+                            $("#ajaxifExist").html("可以使用");
+
+                        }
+                    }
+                })
+            })
+
+        })
+    </script>
+
+</body>
+
+

@@ -1,0 +1,86 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model finalDotNet.usertable
+<h1 class="text-center">修改用户信息</h1>
+@using (Html.BeginForm("membermodified", "Admin", FormMethod.Post, new { @class = "form-group",id="modified" }))
+{
+    @*<div class="form-group">
+        <label for="username" class="control-label">姓名</label>
+        <div class="">
+            <input type="text" class="form-control" id="username" name="username" placeholder="">
+        </div>
+    </div>*@
+    //这里放个隐藏的input，才可以传过去username
+    <input type="hidden" class="form-control" id="username" name="username" value="@Model.username"/>
+
+
+    <div class="form-group form-inline">
+            <label class="control-label col-md-1" for="qq">QQ</label>
+            <input class="form-control" type="text" id="qq" name="qq" value="@Model.qq" />
+        </div>
+        <div class="form-group form-inline">
+            <label class="control-label col-md-1" for="email">Email</label>
+            <input class="form-control" type="email" id="email" name="email" value="@Model.email" />
+        </div>
+        <input type="hidden" value="@Model.password" id="password" name="password" />
+        <div>
+            <input class="btn btn-default btn-lg " type="submit" value="提交" id="submit" style="color:cadetblue" />
+        </div>
+  
+
+
+
+}
+<script src="~/Scripts/jquery.validate.min.js"></script>
+
+<script>
+        $(document).ready(function () {
+            $("#modified").validate({
+                rules: {
+                    username: {
+                        required: true,
+                        minlength: 2,
+                        maxlength:30
+                    },
+                    password: {
+                        required: true,
+                        minlength: 7,
+                        maxlength:30
+                    },
+                    qq: {
+                        required: true,
+                        minlength: 5,
+                        maxlength:15
+                    },
+                    email: {
+                        required: true,
+                        email:true
+                    }
+                },
+                messages: {
+                    username: {
+                        required: "必填",
+                        minlength: "长度不得小于2",
+                        maxlength:"长度不得大于30"
+                    },
+                    password: {
+                        required: "必填",
+                        minlength: "长度不得小于7",
+                        maxlength:"长度不得大于30"
+                    },
+                    qq: {
+                        required: "必填",
+                        minlength: "长度不得小于5",
+                        maxlength:"长度不得大于15"
+                    },
+                    email: {
+                        required: "必填",
+                        email:"请输入正确的email格式"
+                    }
+                }
+            })
+
+        })
+</script>

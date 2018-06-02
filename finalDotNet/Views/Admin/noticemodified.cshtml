@@ -1,0 +1,70 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model finalDotNet.noticetable
+<h1>修改</h1>
+@using (Html.BeginForm("noticemodified", "Admin", FormMethod.Post, new { @class = "form-horizontal", id = "modified" }))
+{
+    <div class="form-group form-inline">
+        <label for="title" class="control-label col-md-1">标题</label>
+        <div class="">
+            <input type="text" class="form-control" id="title" name="title" value="@Model.title">
+        </div>
+    </div>
+    <div class=" form-group">
+        <label for="kind" class="control-label col-md-1" > 类型 </label>
+        @*<select class="form-control" id="kind" name="kind">
+            <option>all</option>
+            <option>寻人</option>
+            <option>寻物</option>
+        </select>*@
+        @*@{
+            string kind = Model.kind == "" ? "all" : Model.kind;
+            <input class="form-control" id="kind" name="kind" placeholder=@kind />
+
+
+        }*@
+        <input class="form-control" id="kind" name="kind" placeholder=@Model.kind />
+
+    </div>
+    <div class="form-group form-inline">
+        <label for="content" class="control-label col-md-1" >内容</label>
+        <textarea class="form-control" rows="3" id="content" name="content" value="">@Model.content </textarea>
+    </div>
+
+    <input type="submit" value="提交" class="btn" id="search" />
+
+
+
+}
+
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#modified").validate({
+            rules: {
+                title: {
+                    required: true,
+                    minlength: 3
+                },
+                content: {
+                    required: true,
+                    minlength: 5
+                }
+            },
+            messages: {
+                title: {
+                    required: "必填",
+                    minlength: "最少三个字",
+                },
+                content: {
+                    required: "必填",
+                    minlength: "最少五个字"
+                }
+            }
+        })
+
+    })
+</script>

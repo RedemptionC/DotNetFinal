@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "用户登录";
+}
+
+<head>
+
+</head>
+
+<body>
+    <h1 class="text-center">会员登录</h1>
+    @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "form-group",id="login" }))
+    {
+        <div>
+            @*姓名登陆*@
+            <div class="form-group form-inline">
+                <label class="control-label col-md-1" for="name">姓名</label>
+                <input class="form-control" type="text" id="name" name="name" placeholder="请输入姓名"/>
+            </div>
+            @*<div class="input-group input-group-lg">
+                <span class="input-group-addon">姓名</span>
+                <input class="form-control" type="text" id="name" name="name" />
+
+            </div>*@
+
+            @*<div class="input-group input-group-lg">
+                <span class="input-group-addon">密码</span>
+                <input class="form-control" type="password" id="password" name="password" />
+
+            </div>*@
+            <div class="form-group form-inline">
+                <label class="control-label col-md-1" for="level">密码</label>
+                <input class="form-control" type="password" id="password" name="password" placeholder="请输入密码"/>
+                @*<input type="image" src="~/Content/img.jpg" />*@
+            </div>
+            <div>
+                <input class="btn btn-default btn-lg " type="submit" value="提交" id="submit" style="color:cadetblue"/>
+            </div>
+        </div>
+    }
+    @*@Html.ActionLink("返回", "Index")*@
+</body>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#login").validate({
+            rules: {
+                name: "required",
+                password:"required"
+            },
+            messages: {
+                name: "必填",
+                password:"必填"
+            }
+
+        })
+
+    })
+</script>

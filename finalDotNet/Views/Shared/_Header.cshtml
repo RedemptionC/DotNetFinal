@@ -1,0 +1,50 @@
+﻿
+<style>
+
+    a {
+        font-family: 微软雅黑;
+        color: black;
+        font-size:large;
+    }
+    td {
+        font-size:medium;
+    }
+    .header_big {
+        padding-top:0px;
+        margin-top:0px;
+      
+    }
+</style>
+<div class="header_big">
+    <div class="col-md-offset-1">
+        @Html.ActionLink("首页","Index","Home")
+    </div>
+
+        <div class="state col-md-offset-10" >
+            @{
+                if (Session["userID"] != null)
+                {
+                    @Html.Raw("欢迎您：<font color=red>" + Session["userID"] + "</font> | ")
+
+                    if ((string)Session["userid"] != "admin")
+                    {
+                            @Html.ActionLink("我的公告|", "Index", "Mynotice");
+
+                    }
+                    else
+                    {
+                        @Html.ActionLink("管理中心|", "Index", "Admin");
+                    }
+                    @*<a href="Mynotice/Index" class="state">我的公告|</a>*@
+                    @Html.ActionLink("登出", "Logout","Home",new { @class="state"})
+                    /*为什么这里的参数提示没有controllername*/
+                }
+                else
+                {
+                    @Html.ActionLink("登录", "Login", "Home", new { @class = "state" });@:|
+                    @Html.ActionLink("注册", "register", "Home", new { @class = "state" })
+                }
+            }
+        </div>
+
+</div>

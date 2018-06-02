@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .big {
+        margin: 0px auto 0px auto;
+        width: 940px;
+        height: 316px;
+        padding: 45px 20px 21px 20px;
+    }
+</style>
+
+<div class="big">
+    <div>@ViewBag.ErrorMessage ......</div>
+    <div>@Html.ActionLink("返回主页", "Index", "Home")</div>
+</div>

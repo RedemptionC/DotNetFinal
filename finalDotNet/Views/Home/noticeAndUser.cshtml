@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "noticeAndUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model finalDotNet.Models.noticeAndUser
+<h2>noticeAndUser</h2>
+
+@{
+<div class="row">
+    <div class="col-md-6">
+        @foreach (var user in Model.user)
+        {
+        <p>@user.username</p>
+        }
+    </div>
+    <div class="col-md-6">
+        @foreach (var notice in Model.notice)
+        {
+        <p>@notice.author</p>
+        }
+    </div>
+</div>
+
+
+    <br />
+
+
+
+    }

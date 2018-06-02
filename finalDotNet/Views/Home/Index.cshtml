@@ -1,0 +1,122 @@
+﻿
+
+@model IEnumerable<finalDotNet.noticetable>
+@*@model Tuple<>*@
+<head>
+    <style>
+        table {
+            overflow: hidden;
+            table-layout: fixed;
+            height:auto;
+
+        }
+        form {
+            margin-left:0px;
+
+            margin-top:50px;        
+        }
+        #input1 {
+            margin-left:-350px;
+            margin-top:100px;
+        }
+        #input2 {
+            margin-left: -350px;
+            margin-top: 180px;
+        }
+        #input3 {
+            margin-left: -350px;
+            margin-top: 260px;
+        }
+    </style>
+
+
+</head>
+<body>
+    @Html.ActionLink("join","join")
+        测试查询、返回join查询的结果
+        
+    @Html.ActionLink("两个model","noticeAndUser")
+    <h1 align="center">校园公告栏</h1>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+      {
+        <div class="form-group col-md-3" id="input1">
+            <label for="kind" class=""> 类型 </label>
+            <select class="form-control " id="kind" name="kind">
+                @{
+                    List<string> kinds = new List<string>();
+            kinds.Add("all");
+                    foreach (var item in Model)
+                    {
+                        if (!kinds.Exists(i => i == item.kind))
+                        {
+                            kinds.Add(item.kind);
+                        }
+    }
+                    foreach (var item in kinds)
+                    {
+                        <option>@item</option>
+
+                    }
+
+                }
+
+                @*<option>all</option>
+                @{
+                    foreach (var item in Model.Distinct())
+                    {
+                        <option>@item.kind</option>
+
+                    }
+                }*@
+                @*<option>all</option>
+                <option>寻人</option>
+                <option>寻物</option>*@
+            </select>
+        </div>
+
+       
+        <div class="form-group col-md-3" id="input2">
+            <label for="info" class="">相关信息</label>
+            <input type="text" id="info" name="info" class="form-control " placeholder="请输入标题或作者" />
+        </div>
+        <div class="form-group col-md-3" id="input3">
+            <label class="control-label"></label>
+            <input type="submit" value="查询" class="btn btn-default btn-lg" id="search" />
+
+        </div>
+
+
+    }
+    @*<div>
+            <label for="searchName">电影名称</label>
+            <input type="text" id="searchName" name="searchName"/>
+            <button type="button" id="btName">查询</button>
+        </div>*@
+    @*<div class="table-responsive">
+        <table class="table    table-hover">
+            <tr>
+                <th>作者</th>
+                <th>标题</th>
+                <th>类型</th>
+                <th>时间</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr class="info">
+                    <td>@item.author</td>
+                    <td>@item.title</td>
+                    <td>@item.kind</td>
+                    <td>@item.submitTime</td>
+
+                    <td>@Html.ActionLink("详细", "Detail", new { id = item.id })</td>
+                </tr>
+
+            }
+        </table>
+    </div>*@
+    @foreach (var item in Model)
+    {
+        <p align="center" class="lead col-md-12">@Html.ActionLink(item.title+"(发布于"+item.submitTime+")", "Detail", new { id = item.id })</p>
+
+    }
+</body>

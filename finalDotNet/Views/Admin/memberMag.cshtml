@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "成员管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IEnumerable<finalDotNet.usertable>
+<body>
+    <h1 class="text-center">成员管理</h1>
+    <div>
+        <table class="table table-hover">
+            <tr>
+                <th>姓名</th>
+                <th>QQ</th>
+                <th>email</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.username</td>
+                    <td>@item.qq</td>
+                    <td>@item.email</td>
+                    <td>@Html.ActionLink("删除", "memberdelete", new { id = item.username})</td>
+                    <td>@Html.ActionLink("修改", "membermodified", new { id = item.username})</td>
+                </tr>
+
+            }
+        </table>
+    </div>
+</body>
+

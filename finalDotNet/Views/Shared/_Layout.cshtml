@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/header.css" rel="stylesheet" />
+
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    <!--<script src="~/Scripts/modernizr-2.6.2.js"></script>-->
+    <style>
+        body {
+            background-color:honeydew;
+            padding-top: 0px;
+            margin-top: 0px;
+            padding-bottom:0px;
+            margin-bottom:0px;
+        }
+        h1 {
+            font-family: 微软雅黑;
+            align-content: center;
+        }
+        p {
+            white-space: pre-wrap; /* css-3 */
+
+            word-wrap: break-word; /* Internet Explorer 5.5+ */
+        }
+    </style>
+
+</head>
+<body>
+    <!--下面加载的2个js移到其它地方会出现运行异常-->
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+     <div>@Html.Partial("~/Views/Shared/_Header.cshtml")</div>   <!--调用头部分部视图-->
+
+    <div class="container body-content">@RenderBody()</div>  <!--相当于占位控件-->
+    @*<div class="col-md-offset-1 col-md-11" style="height:500px"></div>*@
+
+    <div>@Html.Partial("~/Views/Shared/_Footer.cshtml")</div>  <!--调用底部分部视图-->
+
+</body>
+</html>
